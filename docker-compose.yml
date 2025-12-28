@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    container_name: daily-diet-db
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=daily_diet
+    ports:
+      - "5432:5432"
+    volumes:
+      - daily_diet_data:/bitnami/postgresql
+
+volumes:
+  daily_diet_data:
