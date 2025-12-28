@@ -1,4 +1,11 @@
-import type { FastifyInstance } from "fastify";
+import type { FastifyReply, FastifyRequest } from "fastify";
 
-export async function appRoutes(app: FastifyInstance) {
+export async function verifyJwt(request: FastifyRequest, reply: FastifyReply) {
+    try {
+        await request.jwtVerify();
+    } catch (err) {
+        console.error(err);
+
+        reply.status(401).send({ message: "Não autorizado" });
+    }
 }
